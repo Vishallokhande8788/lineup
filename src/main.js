@@ -16,7 +16,7 @@ function renderTasks() {
   taskListEL.innerHTML = "";
   const fragment = document.createDocumentFragment();
   tasks.forEach((task) => {
-    const taskEl = Task(task.value, task.isCompleted);
+    const taskEl = Task(task.value, task.isCompleted,task.id);
     fragment.appendChild(taskEl);
 
     taskListEL.appendChild(fragment);
@@ -29,11 +29,18 @@ formEL.addEventListener("submit", (e) => {
     return;
   }
 
+   
   tasks.unshift({
     id: crypto.randomUUID(),
     value: inputEL.value,
-    isCompleted: false,
+    isCompleted: true,
   });
+
+  taskListEL.addEventListener("click", (e) => {
+    if (e.target.targetName === "INPUT") {
+      console.log(e.target.closest("label").id);  
+      console.log("hiii");}
+    });
 
   // console.log(tasks);
   renderTasks();

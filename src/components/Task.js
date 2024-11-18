@@ -1,9 +1,13 @@
-export default function task(content, checked) {
+export default function task(content, checked ,id) {
   const label = document.createElement("label");
+  label.id = id;
+  label.addEventListener("click", (e) => {
+    console.log("hii");
+  });
   label.className =
     "label cursor-pointer " + (checked && "bg-zinc-300 rounded");
   const span = document.createElement("span");
-  span.className = "label-text";
+  span.className = `label-text ${checked && "underline"}`; 
   span.textContent = content;
 
   const input = document.createElement("input");
