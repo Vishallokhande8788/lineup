@@ -1,6 +1,7 @@
 import "./index.css";
 import { inputEL, formEL, yearEL, taskListEL } from "./dom selection .js";
 import Task from "./components/Task.js";
+import localforage from "localforage";
 // Mark : dom selection
 //IIFE
 
@@ -11,15 +12,24 @@ import Task from "./components/Task.js";
 })();
 
 let tasks = [];
+
+// localStorage.setDriver(localforage.LOCALSTORAGE);
+
+//IIFE
+(async ()=>{
+  const data=await localforage.getItem('device');
+  console.log(data);
+})
+
+
 // this toggles the isCompleted property of a task
 //will be called when the user clicks on the checkbox
 function toggleTask(id) {
-  tasks= tasks.map((task) => {
+  tasks = tasks.map((task) => {
     if (task.id === id) {
       return { ...task, isCompleted: !task.isCompleted };
     }
     return task;
-    
   });
 }
 //show uncompleted tasks first
@@ -30,7 +40,7 @@ function renderTasks() {
   const fragment = document.createDocumentFragment();
   tasks.forEach((task) => {
     const taskEl = Task(task.value, task.isCompleted, task.id);
-  
+
     fragment.appendChild(taskEl);
 
     taskListEL.appendChild(fragment);
@@ -54,12 +64,12 @@ formEL.addEventListener("submit", (e) => {
   taskListEL.addEventListener("click", (e) => {
     if (e.target.targetName === "INPUT") {
       console.log(e.target.closest("label").id);
-      toggleTask()
-     renderTasks();
+      toggleTask();
+      renderTasks();
     }
   });
 
-  toggleTask
+  toggleTask;
   // console.log(tasks);
   renderTasks();
   inputEL.value = "";
