@@ -35,3 +35,7 @@ npm install
 ```bash
 npm run dev
 ```
+## license
+
+MIT License
+
