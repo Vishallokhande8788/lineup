@@ -1,6 +1,6 @@
 # Lineup
 
-A simple to-do list app built with Tailwind CSS and localForage.
+A simple to-do list app built using Tailwind CSS for styling and localForage for storing tasks locally. The app allows users to add, edit, and remove tasks. It stores data in the browser, so your to-do list persists even after a page refresh.
 
 ![Mockup](mockup.png)
 
